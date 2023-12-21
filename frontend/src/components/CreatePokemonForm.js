@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getPokemonTypes } from '../store/pokemon';
+import { getPokemonTypes, createPokemon } from '../store/pokemon';
 
 const CreatePokemonForm = ({ hideForm }) => {
   const pokeTypes = useSelector(state => state.pokemon.types);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [number, setNumber] = useState(1);
+  const [number, setNumber] = useState(126);
   const [attack, setAttack] = useState('');
   const [defense, setDefense] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -38,22 +38,31 @@ const CreatePokemonForm = ({ hideForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const payload = {
-    //   number,
-    //   attack,
-    //   defense,
-    //   imageUrl,
-    //   name,
-    //   type,
-    //   move1,
-    //   move2,
-    //   moves: [move1, move2]
-    // };
+    const payload = {
+      number,
+      attack,
+      defense,
+      imageUrl,
+      name,
+      type,
+      move1,
+      move2,
+      moves: [move1, move2]
+    };
 
-    let createdPokemon;
+    let createdPokemon = {
+      number: number,
+      attack: attack,
+      defense: defense,
+      imageUrl: imageUrl,
+      name: name,
+      moves: [move1, move2]
+    };
+
     if (createdPokemon) {
-      history.push(`/pokemon/${createdPokemon.id}`);
-      hideForm();
+      const response = await dispatch(createPokemon(payload));
+      if (!response.ok) hideForm();
+      else window.alert('Something was wrong about that pokemon info, please try again.')
     }
   };
 
