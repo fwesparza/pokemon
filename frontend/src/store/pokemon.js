@@ -45,7 +45,6 @@ export const editPokemon = (payload) => async dispatch => {
 
   if (response.ok) {
     const newPokemon = await response.json();
-    console.log('newPokemon', newPokemon);
     dispatch(addOnePokemon(newPokemon));
     return newPokemon;
   } else {
