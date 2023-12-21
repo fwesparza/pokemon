@@ -75,7 +75,6 @@ export const getPokemonDetail = (id) => async dispatch => {
 
   if (response.ok) {
     const pokemon = await response.json();
-    console.log('SELECTED POKEMON', pokemon);
     dispatch(addOnePokemon(pokemon));
   }
 }
