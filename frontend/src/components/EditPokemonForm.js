@@ -57,7 +57,6 @@ const EditPokemonForm = ({ pokemon, hideForm }) => {
     if (updatedPokemon) {
       const response = await dispatch(editPokemon(payload));
       hideForm();
-
     }
   };
 

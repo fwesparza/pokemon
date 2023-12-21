@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { editPokemonItem } from '../store/items';
 
 const ItemForm = ({ itemId, hideForm }) => {
   let item = useSelector(state => state.items[itemId]);
+  const dispatch = useDispatch();
 
   const [happiness, setHappiness] = useState(item.happiness);
   const [price, setPrice] = useState(item.price);
@@ -15,15 +17,21 @@ const ItemForm = ({ itemId, hideForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // const payload = {
-    //   ...item,
-    //   name,
-    //   happiness,
-    //   price
-    // };
-    
-    let returnedItem;
+    const payload = {
+      ...item,
+      name,
+      happiness,
+      price
+    };
+
+    let returnedItem = {
+      name: name,
+      happiness: happiness,
+      price: price
+    };
+
     if (returnedItem) {
+      dispatch(editPokemonItem(payload));
       hideForm();
     }
   };

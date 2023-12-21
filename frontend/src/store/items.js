@@ -38,6 +38,25 @@ export const getPokemonItems = (id) => async dispatch => {
   }
 }
 
+export const editPokemonItem = (payload) => async dispatch => {
+  const response = await fetch(`/api/items/${payload.id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (response.ok) {
+    const newItem = await response.json();
+    dispatch(update(newItem));
+    return newItem;
+  } else {
+    return (response);
+  }
+}
+
+
+
+
 const itemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ITEMS:
