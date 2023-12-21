@@ -7,7 +7,7 @@ const CreatePokemonForm = ({ hideForm }) => {
   const pokeTypes = useSelector(state => state.pokemon.types);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [number, setNumber] = useState(126);
+  const [number, setNumber] = useState(1);
   const [attack, setAttack] = useState('');
   const [defense, setDefense] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -61,8 +61,8 @@ const CreatePokemonForm = ({ hideForm }) => {
 
     if (createdPokemon) {
       const response = await dispatch(createPokemon(payload));
-      if (!response.ok) hideForm();
-      else window.alert('Something was wrong about that pokemon info, please try again.')
+      if (response.ok) hideForm();
+
     }
   };
 
