@@ -15,6 +15,9 @@ const PokemonBrowser = () => {
   });
   const [showForm, setShowForm] = useState(false);
 
+  // Phase 1 -
+  // Dispatch the thunk action returned by the getPokemon() thunk action creator
+  // after this component first renders (i.e. 2nd argument of useEffect is [])
   useEffect(() => {
     dispatch(getPokemon());
   }, []);

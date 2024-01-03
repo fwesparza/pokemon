@@ -4,6 +4,9 @@ const LOAD = 'pokemon/LOAD';
 const LOAD_TYPES = 'pokemon/LOAD_TYPES';
 const ADD_ONE = 'pokemon/ADD_ONE';
 
+// --------------------------------
+// THUNK ACTION CREATORS
+// --------------------------------
 const load = list => ({
   type: LOAD,
   list
@@ -19,6 +22,9 @@ const addOnePokemon = pokemon => ({
   pokemon
 });
 
+// Phase 3
+// createPokemon() is a thunk action creator
+// that dispatches the return of the addOnePokemon() action creator
 export const createPokemon = (payload) => async dispatch => {
   const response = await fetch('/api/pokemon', {
     method: 'POST',
@@ -28,12 +34,30 @@ export const createPokemon = (payload) => async dispatch => {
 
   if (response.ok) {
     const newPokemon = await response.json();
-    console.log('newPokemon', newPokemon);
     dispatch(addOnePokemon(newPokemon));
     return newPokemon;
   } else {
     return (response);
   }
+
+  // Bonus 3
+  // Catch errors during Pokemon creation
+  // try {
+  //   const response = await fetch('/api/pokemon', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(payload)
+  //   });
+
+  //   if (!response.ok) {
+  //     throw new Error(`HTTP error: ${response.status}`);
+  //   }
+  //   const data = await response.json();
+  //   return data;
+  // } catch (error) {
+  //   console.error(`Error: ${error}`);
+  // }
+
 }
 
 export const editPokemon = (payload) => async dispatch => {
@@ -52,6 +76,9 @@ export const editPokemon = (payload) => async dispatch => {
   }
 }
 
+// Phase 2
+// getPokemon() is a thunk action creator
+// that dispatches the return of the load() action creator
 export const getPokemon = () => async dispatch => {
   const response = await fetch(`/api/pokemon`);
 
@@ -70,6 +97,9 @@ export const getPokemonTypes = () => async dispatch => {
   }
 };
 
+// Phase 2
+// getPokemonDetail is a thunk action creator that
+// dispatches the return of teh addOnePokemon action creator
 export const getPokemonDetail = (id) => async dispatch => {
   const response = await fetch(`/api/pokemon/${id}`);
 
