@@ -99,7 +99,7 @@ export const getPokemonTypes = () => async dispatch => {
 
 // Phase 2
 // getPokemonDetail is a thunk action creator that
-// dispatches the return of teh addOnePokemon action creator
+// dispatches the return of the addOnePokemon action creator
 export const getPokemonDetail = (id) => async dispatch => {
   const response = await fetch(`/api/pokemon/${id}`);
 

@@ -54,8 +54,22 @@ export const editPokemonItem = (payload) => async dispatch => {
   }
 }
 
+// Bonus 1 - Delete an item
+// export const deletePokemonItem = (payload) => async dispatch => {
+//   console.log('Delete button clicked');
+//   const response = await fetch(`/api/items/${payload.id}`, {
+//     method: 'DELETE'
+//   });
 
+//   console.log('RESPONSE', response);
 
+//   if (response.ok) {
+//     console.log('Response is ok')
+//     const itemToDelete = await response.json();
+//     dispatch(remove(itemToDelete));
+//   }
+
+}
 
 const itemsReducer = (state = initialState, action) => {
   switch (action.type) {
