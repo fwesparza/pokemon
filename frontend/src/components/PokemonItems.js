@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getPokemonItems } from '../store/items';
+import { getPokemonItems, deletePokemonItem } from '../store/items';
 
 const PokemonItems = ({ pokemon, setEditItemId }) => {
   const dispatch = useDispatch();
@@ -34,14 +34,21 @@ const PokemonItems = ({ pokemon, setEditItemId }) => {
       <td className="centered">${item.price}</td>
       {pokemon.captured && (
         <td className="centered">
-          <button onClick={() => setEditItemId(item.id)}>
+          <button
+            onClick={() => setEditItemId(item.id)}>
             Edit
           </button>
         </td>
       )}
       {pokemon.captured && (
         <td className="centered">
-          <button>
+          <button
+          // onClick={() => {
+          //   console.log('Delete button clicked');
+          //   deletePokemonItem(item.id);
+          // }
+          // }
+          >
             Delete
           </button>
         </td>
