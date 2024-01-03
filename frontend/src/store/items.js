@@ -1,3 +1,5 @@
+import { useParams } from 'react-router-dom';
+
 export const LOAD_ITEMS = "items/LOAD_ITEMS";
 export const UPDATE_ITEM = "items/UPDATE_ITEM";
 export const REMOVE_ITEM = "items/REMOVE_ITEM";
@@ -25,10 +27,9 @@ const remove = (itemId, pokemonId) => ({
   pokemonId
 });
 
-const initialState = {
+const initialState = {};
 
-};
-
+// Phase 5
 export const getPokemonItems = (id) => async dispatch => {
   const response = await fetch(`/api/pokemon/${id}/items`);
 
@@ -38,6 +39,7 @@ export const getPokemonItems = (id) => async dispatch => {
   }
 }
 
+// Phase 6
 export const editPokemonItem = (payload) => async dispatch => {
   const response = await fetch(`/api/items/${payload.id}`, {
     method: 'PUT',
@@ -55,20 +57,14 @@ export const editPokemonItem = (payload) => async dispatch => {
 }
 
 // Bonus 1 - Delete an item
-// export const deletePokemonItem = (payload) => async dispatch => {
-//   console.log('Delete button clicked');
-//   const response = await fetch(`/api/items/${payload.id}`, {
-//     method: 'DELETE'
-//   });
+export const deletePokemonItem = ({ itemId, pokemonId }) => async dispatch => {
+  const response = await fetch(`/api/items/${itemId}`, {
+    method: 'DELETE'
+  });
 
-//   console.log('RESPONSE', response);
-
-//   if (response.ok) {
-//     console.log('Response is ok')
-//     const itemToDelete = await response.json();
-//     dispatch(remove(itemToDelete));
-//   }
-
+  if (response.ok) {
+    dispatch(remove(itemId, pokemonId));
+  }
 }
 
 const itemsReducer = (state = initialState, action) => {

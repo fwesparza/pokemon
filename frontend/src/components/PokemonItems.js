@@ -43,11 +43,10 @@ const PokemonItems = ({ pokemon, setEditItemId }) => {
       {pokemon.captured && (
         <td className="centered">
           <button
-          // onClick={() => {
-          //   console.log('Delete button clicked');
-          //   deletePokemonItem(item.id);
-          // }
-          // }
+            onClick={() => {
+              dispatch(deletePokemonItem({ itemId: item.id, pokemonId: pokemonId }));
+            }
+            }
           >
             Delete
           </button>
