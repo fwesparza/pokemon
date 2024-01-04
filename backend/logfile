@@ -1,0 +1,27 @@
+2024-01-03 19:29:05.672 PST [23849] LOG:  starting PostgreSQL 14.10 (Homebrew) on x86_64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.202), 64-bit
+2024-01-03 19:29:05.676 PST [23849] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-01-03 19:29:05.676 PST [23849] LOG:  listening on IPv6 address "::1", port 5432
+2024-01-03 19:29:05.676 PST [23849] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-01-03 19:29:05.681 PST [23850] LOG:  database system was shut down at 2024-01-03 19:28:58 PST
+2024-01-03 19:29:05.692 PST [23849] LOG:  database system is ready to accept connections
+2024-01-03 19:29:15.851 PST [23891] FATAL:  role "pokedex_app" does not exist
+2024-01-03 19:30:39.333 PST [23917] ERROR:  syntax error at or near "'
+	CREATE USER pokedex_app WITH PASSWORD '" at character 58
+2024-01-03 19:30:39.333 PST [23917] STATEMENT:  CREATE USER pokedex_app WITH PASSWORD 'password' CREATEDB'
+	CREATE USER pokedex_app WITH PASSWORD 'password' CREATEDB;
+	CREATE USER pokedex_app WITH PASSWORD 'password' CREATEDB'
+	;
+2024-01-03 19:31:24.023 PST [24045] ERROR:  database "pokedex_dev" already exists
+2024-01-03 19:31:24.023 PST [24045] STATEMENT:  CREATE DATABASE "pokedex_dev"
+2024-01-03 19:33:22.826 PST [24583] ERROR:  relation "Pokemons" does not exist at character 124
+2024-01-03 19:33:22.826 PST [24583] STATEMENT:  SELECT "id", "number", "attack", "defense", "imageUrl", "name", "type", "moves", "captured", "createdAt", "updatedAt" FROM "Pokemons" AS "Pokemon" WHERE "Pokemon"."id" = '2';
+2024-01-03 19:33:22.826 PST [24584] ERROR:  relation "Pokemons" does not exist at character 60
+2024-01-03 19:33:22.826 PST [24584] STATEMENT:  SELECT "id", "number", "imageUrl", "name", "captured" FROM "Pokemons" AS "Pokemon";
+2024-01-03 19:33:29.022 PST [24584] ERROR:  relation "Pokemons" does not exist at character 60
+2024-01-03 19:33:29.022 PST [24584] STATEMENT:  SELECT "id", "number", "imageUrl", "name", "captured" FROM "Pokemons" AS "Pokemon";
+2024-01-03 19:36:15.246 PST [23851] PANIC:  could not open file "/Users/frankiewillcoxesparza/Documents/practice-for-sprint-15-react-thunk-pokedex-long-practice/backend/myData/global/pg_control": No such file or directory
+2024-01-03 19:36:15.299 PST [23849] LOG:  checkpointer process (PID 23851) was terminated by signal 6: Abort trap: 6
+2024-01-03 19:36:15.299 PST [23849] LOG:  terminating any other active server processes
+2024-01-03 19:36:15.303 PST [23849] LOG:  all server processes terminated; reinitializing
+2024-01-03 19:36:15.306 PST [23849] FATAL:  could not stat data directory "/Users/frankiewillcoxesparza/Documents/practice-for-sprint-15-react-thunk-pokedex-long-practice/backend/myData": No such file or directory
+2024-01-03 19:36:15.307 PST [23849] LOG:  database system is shut down
