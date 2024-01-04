@@ -19,22 +19,42 @@ const addOnePokemon = pokemon => ({
   pokemon
 });
 
-// Phase 3
+// Phase 3 (Before Bonus 3)
 // createPokemon() is a thunk action creator
 // that dispatches the return of the addOnePokemon() action creator
-export const createPokemon = (payload) => async dispatch => {
-  const response = await fetch('/api/pokemon', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  });
+// export const createPokemon = (payload) => async dispatch => {
+//   const response = await fetch('/api/pokemon', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(payload)
+//   });
 
-  if (response.ok) {
+//   if (response.ok) {
+//     const newPokemon = await response.json();
+//     dispatch(addOnePokemon(newPokemon));
+//     return newPokemon;
+//   }
+// }
+
+// Phase 3 + Bonus 3 (error catching)
+export const createPokemon = (payload) => async dispatch => {
+  try {
+    const response = await fetch('/api/pokemon', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) {
+      throw new Error(`${response.status} ${response.statusText}`);
+    }
+
     const newPokemon = await response.json();
     dispatch(addOnePokemon(newPokemon));
     return newPokemon;
-  } else {
-    return (response);
+
+  } catch (error) {
+    console.error(`Could not create the new pokemon: ${error}`)
   }
 }
 

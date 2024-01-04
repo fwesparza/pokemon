@@ -55,18 +55,13 @@ const CreatePokemonForm = ({ hideForm }) => {
     if (payload) {
       dispatch(createPokemon(payload));
     }
-
-    // Bonus 3
-    // if (createdPokemon) {
-    //   const promise = dispatch(createPokemon(payload));
-    //   promise.then((data) => console.log(data));
-    // }
-  };
+  }
 
   const handleCancelClick = (e) => {
     e.preventDefault();
     hideForm();
   };
+
 
   return (
     <section className="new-form-holder centered middled">
