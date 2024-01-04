@@ -67,6 +67,23 @@ export const deletePokemonItem = ({ itemId, pokemonId }) => async dispatch => {
   }
 }
 
+// Bonus 2
+export const addPokemonItem = ({ item, pokemonId }) => async dispatch => {
+  const response = await fetch(`/api/pokemon/${pokemonId}/items`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(item)
+  });
+
+  if (response.ok) {
+    const newItem = await response.json();
+    dispatch(add(newItem));
+    return newItem;
+  } else {
+    return (response);
+  }
+}
+
 const itemsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ITEMS:
@@ -78,16 +95,25 @@ const itemsReducer = (state = initialState, action) => {
         ...state,
         ...newItems
       }
+
     case REMOVE_ITEM:
       const newState = { ...state };
       delete newState[action.itemId];
       return newState;
+
+    // Bonus 2
     case ADD_ITEM:
+      return {
+        ...state,
+        [action.item.id]: action.item
+      };
+
     case UPDATE_ITEM:
       return {
         ...state,
         [action.item.id]: action.item
       };
+
     default:
       return state;
   }

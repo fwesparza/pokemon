@@ -38,8 +38,6 @@ const CreatePokemonForm = ({ hideForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // TODO - payload was given, is it necessary to have payload
-    // separate from createdPokemon?
     const payload = {
       number,
       attack,
@@ -52,18 +50,9 @@ const CreatePokemonForm = ({ hideForm }) => {
       moves: [move1, move2]
     };
 
-    let createdPokemon = {
-      number: number,
-      attack: attack,
-      defense: defense,
-      imageUrl: imageUrl,
-      name: name,
-      moves: [move1, move2]
-    };
-
     // Phase 3
     // adds newly createdPokemon to the Redux store & hides the form
-    if (createdPokemon) {
+    if (payload) {
       dispatch(createPokemon(payload));
     }
 
