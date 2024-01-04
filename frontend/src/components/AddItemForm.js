@@ -4,16 +4,9 @@ import { addPokemonItem } from '../store/items';
 
 const AddItemForm = ({ pokemonId, hideForm }) => {
     const dispatch = useDispatch();
-
-    // Removed from ItemForm.js code
-    // let item = useSelector(state => state.items[itemId]);
-    // const [happiness, setHappiness] = useState(item.happiness);
-    // const [price, setPrice] = useState(item.price);
-    // const [name, setName] = useState(item.name);
-
-    const [happiness, setHappiness] = useState(100);
-    const [price, setPrice] = useState(100);
-    const [name, setName] = useState("Dolphin Stickers");
+    const [happiness, setHappiness] = useState(0);
+    const [price, setPrice] = useState(0);
+    const [name, setName] = useState("");
 
     const updateName = (e) => setName(e.target.value);
     const updateHappiness = (e) => setHappiness(e.target.value);
