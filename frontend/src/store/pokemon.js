@@ -4,9 +4,6 @@ const LOAD = 'pokemon/LOAD';
 const LOAD_TYPES = 'pokemon/LOAD_TYPES';
 const ADD_ONE = 'pokemon/ADD_ONE';
 
-// --------------------------------
-// THUNK ACTION CREATORS
-// --------------------------------
 const load = list => ({
   type: LOAD,
   list
@@ -39,25 +36,6 @@ export const createPokemon = (payload) => async dispatch => {
   } else {
     return (response);
   }
-
-  // Bonus 3
-  // Catch errors during Pokemon creation
-  // try {
-  //   const response = await fetch('/api/pokemon', {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify(payload)
-  //   });
-
-  //   if (!response.ok) {
-  //     throw new Error(`HTTP error: ${response.status}`);
-  //   }
-  //   const data = await response.json();
-  //   return data;
-  // } catch (error) {
-  //   console.error(`Error: ${error}`);
-  // }
-
 }
 
 export const editPokemon = (payload) => async dispatch => {
@@ -106,7 +84,12 @@ export const getPokemonDetail = (id) => async dispatch => {
   if (response.ok) {
     const pokemon = await response.json();
     dispatch(addOnePokemon(pokemon));
+
+    // Bonus 3 - Alert when back end server is not started yet
+  } else {
+    window.alert(`Error: Start the backend server to access this page.`)
   }
+
 }
 
 const initialState = {
