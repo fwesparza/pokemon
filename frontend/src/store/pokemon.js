@@ -19,6 +19,7 @@ const addOnePokemon = pokemon => ({
   pokemon
 });
 
+// Phase 3
 export const createPokemon = (payload) => async dispatch => {
   const response = await fetch('/api/pokemon', {
     method: 'POST',
@@ -28,6 +29,7 @@ export const createPokemon = (payload) => async dispatch => {
 
   const newPokemon = await response.json();
 
+  // Bonus Phase 3 - Error Catching
   try {
     const response = dispatch(addOnePokemon(newPokemon));
 
@@ -36,11 +38,12 @@ export const createPokemon = (payload) => async dispatch => {
       let fieldsWithErrors = Object.keys(errors);
 
       fieldsWithErrors.forEach(field => {
-        throw new Error(`${field} ${errors.field}`);
+        throw new Error(`${field} ${errors[field]}`);
       })
     }
   } catch (error) {
     console.error(`${error}`)
+    return error;
   }
 
   return response;

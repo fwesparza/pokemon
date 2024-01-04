@@ -25,3 +25,19 @@
 2024-01-03 19:36:15.303 PST [23849] LOG:  all server processes terminated; reinitializing
 2024-01-03 19:36:15.306 PST [23849] FATAL:  could not stat data directory "/Users/frankiewillcoxesparza/Documents/practice-for-sprint-15-react-thunk-pokedex-long-practice/backend/myData": No such file or directory
 2024-01-03 19:36:15.307 PST [23849] LOG:  database system is shut down
+2024-01-04 12:11:41.828 PST [1389] LOG:  starting PostgreSQL 14.10 (Homebrew) on x86_64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.202), 64-bit
+2024-01-04 12:11:41.831 PST [1389] LOG:  listening on IPv4 address "127.0.0.1", port 5432
+2024-01-04 12:11:41.831 PST [1389] LOG:  listening on IPv6 address "::1", port 5432
+2024-01-04 12:11:41.831 PST [1389] LOG:  listening on Unix socket "/tmp/.s.PGSQL.5432"
+2024-01-04 12:11:41.835 PST [1390] LOG:  database system was shut down at 2024-01-04 12:11:25 PST
+2024-01-04 12:11:41.838 PST [1389] LOG:  database system is ready to accept connections
+2024-01-04 12:11:47.127 PST [1441] FATAL:  role "pokedex_app" does not exist
+2024-01-04 12:12:25.809 PST [1500] ERROR:  role "pokedex_app" does not exist
+2024-01-04 12:12:25.809 PST [1500] STATEMENT:  CREATE DATABASE pokedex_dev OWNER pokedex_app
+	;
+2024-01-04 12:13:00.399 PST [1658] ERROR:  database "pokedex_dev" already exists
+2024-01-04 12:13:00.399 PST [1658] STATEMENT:  CREATE DATABASE "pokedex_dev"
+2024-01-04 12:13:00.405 PST [1658] LOG:  could not receive data from client: Connection reset by peer
+2024-01-04 12:56:42.509 PST [4618] ERROR:  duplicate key value violates unique constraint "Pokemons_number_key"
+2024-01-04 12:56:42.509 PST [4618] DETAIL:  Key (number)=(1) already exists.
+2024-01-04 12:56:42.509 PST [4618] STATEMENT:  INSERT INTO "Pokemons" ("id","number","attack","defense","imageUrl","name","type","moves","createdAt","updatedAt") VALUES (DEFAULT,$1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING "id","number","attack","defense","imageUrl","name","type","moves","encounterRate","catchRate","captured","createdAt","updatedAt";

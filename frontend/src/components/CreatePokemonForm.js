@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getPokemonTypes, createPokemon } from '../store/pokemon';
+import ErrorMessage from '../components/ErrorMessage';
 
 const CreatePokemonForm = ({ hideForm }) => {
   const pokeTypes = useSelector(state => state.pokemon.types);
@@ -15,6 +16,7 @@ const CreatePokemonForm = ({ hideForm }) => {
   const [type, setType] = useState(pokeTypes[0]);
   const [move1, setMove1] = useState('');
   const [move2, setMove2] = useState('');
+  const [errors, setErrors] = useState({});
 
   const updateNumber = (e) => setNumber(e.target.value);
   const updateAttack = (e) => setAttack(e.target.value);
@@ -53,7 +55,12 @@ const CreatePokemonForm = ({ hideForm }) => {
     // Phase 3
     // adds newly createdPokemon to the Redux store & hides the form
     if (payload) {
-      dispatch(createPokemon(payload));
+      let promise = dispatch(createPokemon(payload));
+
+      promise.then((data) => {
+        console.log('CreatPokemonForm -', data);
+        setErrors(data);
+      });
     }
   }
 
@@ -62,10 +69,21 @@ const CreatePokemonForm = ({ hideForm }) => {
     hideForm();
   };
 
+  let errorMessage;
+
+  if (errors) {
+    console.log('ERRORS', errors);
+    let fieldsWithErrors = Object.keys(errors);
+
+    errorMessage = (
+      <ErrorMessage label={fieldsWithErrors[0]} message={errors} />
+    );
+  }
 
   return (
     <section className="new-form-holder centered middled">
       <form className="create-pokemon-form" onSubmit={handleSubmit}>
+        {errorMessage}
         <input
           type="number"
           placeholder="Number"

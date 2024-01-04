@@ -1,0 +1,1 @@
+/usr/local/Cellar/postgresql@14/14.10_1/bin/postgres "-D" "myData"
