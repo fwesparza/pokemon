@@ -50,7 +50,7 @@ app.use((err, _req, _res, next) => {
     err.status = 422;
     const errorMessages = {};
     err.errors.forEach((e) => {
-      errorMessages[e.path] = 
+      errorMessages[e.path] =
         // If field appears as first word in error message, strip it out
         e.message.replace(/^number|^attack|^defense|^imageUrl|^name|^type|^moves/, "");
     });
@@ -63,7 +63,7 @@ app.use((err, _req, _res, next) => {
 // Error formatter
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
-  console.error(err);
+  console.error('ERROR', err);
   res.json({
     title: err.title || 'Server Error',
     message: err.message,
