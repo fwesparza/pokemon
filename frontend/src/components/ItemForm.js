@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editPokemonItem } from '../store/items';
 
 const ItemForm = ({ itemId, hideForm }) => {
-  let item = useSelector(state => state.items[itemId]);
   const dispatch = useDispatch();
+  let item = useSelector(state => state.items[itemId]);
 
   const [happiness, setHappiness] = useState(item.happiness);
   const [price, setPrice] = useState(item.price);
@@ -24,13 +24,7 @@ const ItemForm = ({ itemId, hideForm }) => {
       price
     };
 
-    let returnedItem = {
-      name: name,
-      happiness: happiness,
-      price: price
-    };
-
-    if (returnedItem) {
+    if (payload) {
       dispatch(editPokemonItem(payload));
       hideForm();
     }
